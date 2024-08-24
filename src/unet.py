@@ -74,30 +74,31 @@ class UNet(Module):
 		
         
 	def forward(self, x):
-		"""Forward pass of the UNet model.
+		"""
+		Forward pass of the UNet model.
 
-            Parameters:
-            -----------
-            x : torch.Tensor
-                The input tensor, typically a batch of images with dimensions [batch_size, channels, height, width].
+        Parameters:
+        -----------
+        x : torch.Tensor
+            The input tensor, typically a batch of images with dimensions [batch_size, channels, height, width].
 
-            Returns:
-            --------
-            torch.Tensor
-                The output tensor representing the segmentation map. The dimensions of the output
-                will match `ouput_dim` if `retainDim` is set to True.
+        Returns:
+        --------
+        torch.Tensor
+            The output tensor representing the segmentation map. The dimensions of the output
+            will match `ouput_dim` if `retainDim` is set to True.
 		"""
 		
-        # Extract features from the encoder
+		# Extract features from the encoder
 		encoder_features_maps = self.encoder(x)
 		
-		# Decode the features, using skip connections from the encoder
+		# Decode the features, using skip connection from the encoder
 		decoder_features_maps = self.decoder(encoder_features_maps[::-1][0],encoder_features_maps[::-1][1:])
 		
-        # Apply the final convolution to obtain the segmentation map
+		#Apply the final convolutuin to obtain the segmentation map
 		map = self.head(decoder_features_maps)
 		
-        # If retain_dim is True, resize the output to match ouput_dim
+		# If retain_dim is True, resize the output to match output_dim
 		if self.retain_dim:
 			map = F.interpolate(map, self.ouput_dim)
 		
