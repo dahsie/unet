@@ -100,6 +100,7 @@ class Decoder(Module):
             The cropped encoder feature map with the same height and width as `x`.
         """
 		
+		
 		(_, _, H, W) = x.shape
 		encoder_features_map = CenterCrop([H, W])(encoder_features_map)
 	

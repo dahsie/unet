@@ -5,7 +5,6 @@ from typing import Tuple
 from torch.nn import Module, Conv2d
 from torch.nn import functional as F
 
-
 class UNet(Module):
 	"""
     UNet model for image segmentation, consisting of an encoder-decoder structure with skip connections. 

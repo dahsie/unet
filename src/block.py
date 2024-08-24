@@ -39,6 +39,7 @@ class Block(Module):
     >>> x = torch.randn(1, 3, 224, 224)  # Example input tensor
     >>> output = block(x)
     """
+	
 	def __init__(self, input_channels: int, output_channels: int) -> None:
 		super(Block, self).__init__()
 

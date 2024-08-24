@@ -3,6 +3,7 @@ from block import Block
 from typing import Tuple, List
 from torch import Tensor
 
+
 class Encoder(Module):
 	"""
     The Encoder class constructs a series of convolutional blocks followed by max pooling layers,
