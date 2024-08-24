@@ -74,18 +74,7 @@ class UNet(Module):
 		
         
 	def forward(self, x):
-		"""Forward pass of the UNet model
 		
-		Parameters:
-		----------
-		x: torch.Tensor
-            The input tensor, typically a batch images with diemensions [batch_size, channels, height; width].
-		
-		Returns:
-		-------
-		torch.Tensor :
-            The output tensor representing the segmentation map. The dimensions of the output will match 'output_dim' if retain_dim is set to True.
-		"""
 		
 		# Extract features from the encoder
 		encoder_features_maps = self.encoder(x)
