@@ -7,6 +7,7 @@ from torch.nn import functional as F
 
 class UNet(Module):
 	"""
+	
     UNet model for image segmentation, consisting of an encoder-decoder structure with skip connections. 
 	The encoder extracts features from the input, and the decoder reconstructs the segmentation map from these features.
 
