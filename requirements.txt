@@ -1,0 +1,6 @@
+pip install torch torchvision
+pip install matplotlib
+pip install opencv-contrib-python
+pip install imutils
+pip install scikit-learn
+pip install tqdm
