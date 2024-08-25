@@ -48,9 +48,11 @@ class Block(Module):
 
         self.conv1 = Conv2d(in_channels=input_channels, out_channels=output_channels, kernel_size=3)
         self.bn1 = BatchNorm2d(output_channels)
-        self.relu = ReLU()
+        self.relu1 = ReLU()
         self.conv2 = Conv2d(in_channels=output_channels, out_channels=output_channels, kernel_size=3)
         self.bn2 = BatchNorm2d(output_channels)
+        self.relu2 = ReLU()
+
         
     def forward(self, x: Tensor) -> Tensor:
         """
@@ -67,4 +69,6 @@ class Block(Module):
             The output tensor after passing through two convolutional layers and a ReLU activation.
             The shape will be [batch_size, output_channels, height-2, width-2] due to the 3x3 convolutions.
         """
-        return self.bn2(self.conv2(self.relu(self.bn1(self.conv1(x)))))
+        # return self.bn2(self.conv2(self.relu(self.bn1(self.conv1(x)))))
+        # return self.relu2(self.conv2(self.relu1(self.conv1(x))))
+        return self.relu2(self.bn2(self.conv2(self.relu1(self.bn1(self.conv1(x))))))
