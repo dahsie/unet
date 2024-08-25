@@ -43,11 +43,12 @@ class SegmentationDataset(Dataset):
     torch.Size([3, H, W]) torch.Size([1, H, W])
     """
     
-    def __init__(self, image_paths, mask_paths, transforms=None):
+    def __init__(self, image_paths, mask_paths, image_transforms=None, mask_transforms=None):
         # Store the image and mask file paths, and the optional transformations
         self.imagePaths = image_paths
         self.maskPaths = mask_paths
-        self.transforms = transforms
+        self.image_transforms = image_transforms
+        self.mask_transforms = mask_transforms
     
     def __len__(self):
         # Return the number of total samples in the dataset
@@ -64,10 +65,12 @@ class SegmentationDataset(Dataset):
         mask = cv2.imread(self.maskPaths[idx], 0)
         
         # Check to see if we are applying any transformations
-        if self.transforms is not None:
+        if self.image_transforms is not None:
             # Apply the transformations to both the image and its mask
-            image = self.transforms(image)
-            mask = self.transforms(mask)
+            image = self.image_transforms(image)
+
+        if self.mask_transforms is not None:  
+            mask = self.mask_transforms(mask)
         
         # Return a tuple of the image and its mask
         return image, mask
